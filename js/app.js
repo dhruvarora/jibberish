@@ -1,4 +1,4 @@
-var fireBaseRef = new Firebase("https://fifa14.firebaseio.com/");
+var fireBaseRef = new Firebase("https://jibberish.firebaseio.com/");
 $("#submit-btn").bind("click", function() {
   var chat = $("#chats");
   var chatValue = $.trim(chat.val());
