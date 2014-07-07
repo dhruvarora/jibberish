@@ -2,11 +2,11 @@ var fireBaseRef = new Firebase("https://fifa14.firebaseio.com/");
 $("#submit-btn").bind("click", function() {
   var chat = $("#chats");
   var chatValue = $.trim(chat.val());
-
+  var username = "Dhruv";
   if (chatValue.length === 0) {
       console.log('Please enter some text!');
   } else {
-      fireBaseRef.push({chat: chatValue}, function(error) {
+      fireBaseRef.push({chat: chatValue, user: username}, function(error) {
           if (error !== null) {
               console.log('Could not push chat to FireBase!');
           }
@@ -17,13 +17,12 @@ $("#submit-btn").bind("click", function() {
 });
 
 fireBaseRef.on('child_added', function(snapshot) {
-  var uniqName = snapshot.name();
   var chat = snapshot.val().chat;
+  var user = snapshot.val().user;
   var chatsContainer = $('#chats-container');
 
   $('<div/>', {class: 'chat-container'})
-    .html('<span class="label label-default">User-'
-        + uniqName + '</span>' + chat).appendTo(chatsContainer);
+    .html('<span class="label label-default">' + user + '</span>' + chat).appendTo(chatsContainer);
 
   chatsContainer.scrollTop(chatsContainer.prop('scrollHeight'));
 });
