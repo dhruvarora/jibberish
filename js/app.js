@@ -1,14 +1,14 @@
 var fireBaseRef = new Firebase("https://fifa14.firebaseio.com/");
 $("#submit-btn").bind("click", function() {
-  var chat = $("#comments");
+  var chat = $("#chats");
   var chatValue = $.trim(chat.val());
 
   if (chatValue.length === 0) {
-      alert('Please enter some text!');
+      console.log('Please enter some text!');
   } else {
       fireBaseRef.push({chat: chatValue}, function(error) {
           if (error !== null) {
-              alert('Could not push chat to FireBase!');
+              console.log('Could not push chat to FireBase!');
           }
       });
       chat.val("");
@@ -19,11 +19,21 @@ $("#submit-btn").bind("click", function() {
 fireBaseRef.on('child_added', function(snapshot) {
   var uniqName = snapshot.name();
   var chat = snapshot.val().chat;
-  var commentsContainer = $('#comments-container');
+  var chatsContainer = $('#chats-container');
 
-  $('<div/>', {class: 'comment-container'})
+  $('<div/>', {class: 'chat-container'})
     .html('<span class="label label-default">User-'
-        + uniqName + '</span>' + chat).appendTo(commentsContainer);
+        + uniqName + '</span>' + chat).appendTo(chatsContainer);
 
-  commentsContainer.scrollTop(commentsContainer.prop('scrollHeight'));
+  chatsContainer.scrollTop(chatsContainer.prop('scrollHeight'));
 });
+
+$("#chats").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#chats").click();
+    }
+});
+
+$('#clear-btn').bind("click", function() {
+  $('#chats-container').empty();
+})

@@ -2,13 +2,13 @@ container {
     max-width: 700px;
 }
 
-#comments-container {
+#chats-container {
     border: 1px solid #d0d0d0;
     height: 400px;
     overflow-y: scroll;
 }
 
-.comment-container {
+.chat-container {
     padding: 10px;
     margin:6px;
     background: #f5f5f5;
@@ -18,10 +18,14 @@ container {
     border-radius: 5px;
 }
 
-.comment-container .label {
+.chat-container .label {
     margin-right: 20px;
 }
 
-.comment-container:last-of-type {
+.chat-container:last-of-type {
     border-bottom: none;
+}
+
+#chats {
+    width: fill;
 }
