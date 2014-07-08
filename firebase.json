@@ -1,5 +1,5 @@
 {
-  "firebase": "Jibberish`",
+  "firebase": "jibberish",
   "public": ".",
   "ignore": [
     "firebase.json",
