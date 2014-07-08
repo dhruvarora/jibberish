@@ -1,0 +1,58 @@
+.absolute {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -150px;
+	margin-top: -150px;
+}
+
+.heading {
+	color: #A5281B;
+	font-size: 50px;
+	margin-bottom: 15px;
+}
+
+.icon-arrow-right:before {
+	content: "\2192";
+}
+
+/* Button styling */
+.butn {
+	border: 1px solid #A5281B;
+	border-radius: 50px;
+	color: #A5281B;
+	font-size: inherit;
+	background: none;
+	cursor: pointer;
+	padding: 20px 60px;
+	margin: 0px 120px;
+	letter-spacing: 0.50px;
+	outline: none;
+	position: absolute;
+	overflow: hidden;
+}
+
+.butn:before {
+	position: absolute;
+	height: 100%;
+	font-size: 125%;
+	line-height: 3;
+	color: #fff;
+	-webkit-transition: all 0.1s;
+	-moz-transition: all 0.1s;
+	transition: all 0.1s;
+	left: 100%;
+	top: 0;
+}
+
+.butn:hover {
+	background: #c0392b;
+	border-radius: 50px;
+	border: 3px #c0392b;
+	color: #fff;
+}
+
+.butn:hover:before {
+	left: 70%;
+	color: #fff;
+}

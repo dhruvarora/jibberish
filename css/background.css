@@ -1,0 +1,32 @@
+
+html, body {
+  min-width: 100%;
+  min-height: 100%;
+}
+
+body {
+  font-family: Calibri, Arial, sans-serif;
+}
+
+.bg-img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../assets/image.jpg");
+  background-position: center center;
+  background-size: cover;
+  opacity: .4;
+}
+
+.bg-img:after {
+  content: '';
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(#dc4225, #dc4225);
+  opacity: .80;
+}

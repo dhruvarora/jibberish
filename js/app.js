@@ -1,18 +1,30 @@
 var fireBaseRef = new Firebase("https://jibberish.firebaseio.com/");
-var username;
+var authUser;
 
-$("#submit-btn").bind("click", function() {
+var auth = FirebaseSimpleLogin(fireBaseRef, function(error, user) {
+ if (user) {
+    console.log("User logged in");
+    authUser = user;
+  }
+});
+
+
+$("#submit-btn").on("click", function() {
   var chat = $("#chats");
   var chatValue = $.trim(chat.val());
   if (chatValue.length === 0) {
-      console.log('Please enter some text!');
+      alert('Please enter some text!');
   } else {
-      fireBaseRef.push({chat: chatValue, user: username}, function(error) {
+      if (authUser) {
+        fireBaseRef.push({chat: chatValue, user: authUser.username}, function(error) {
           if (error !== null) {
-              console.log('Could not push chat to FireBase!');
+            console.log('Could not push chat to FireBase!');
           }
-      });
-      chat.val("");
+        });
+        chat.val("");
+      } else {
+        alert("Please login!");
+      }
   }
   return false;
 });
@@ -32,26 +44,17 @@ $("#chats").keyup(function(event){
   }
 });
 
-$('#clear-btn').bind("click", function() {
+$('#clear-btn').on("click", function() {
   $('#chats-container').empty();
 });
 
 $("#login-btn").on("click", function() {
-  login();
+  console.log("calling twitter window");
+  auth.login('twitter');
 });
 
-var auth = new FirebaseSimpleLogin(fireBaseRef, function(error, user) {
-  if (error) {
-    console.log(error);
-  } else if (user) {
-    username = user.username;
-  } else {
-    login();
-  }
+$("#logout-btn").on("click", function() {
+  console.log("Logged out!")
+  auth.logout();
+  authUser = null;
 });
-
-var login = function() {
-  auth.login('twitter', {
-    rememberMe: true
-  });
-}
