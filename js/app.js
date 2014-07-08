@@ -1,9 +1,9 @@
 var fireBaseRef = new Firebase("https://jibberish.firebaseio.com/");
+var username;
 
 $("#submit-btn").bind("click", function() {
   var chat = $("#chats");
   var chatValue = $.trim(chat.val());
-  var username = "Dhruv";
   if (chatValue.length === 0) {
       console.log('Please enter some text!');
   } else {
@@ -36,8 +36,9 @@ $('#clear-btn').bind("click", function() {
   $('#chats-container').empty();
 });
 
-$("#signup-btn").on("click", function() {
-  auth();
+$("#login-btn").on("click", function() {
+  login();
+  console.log(username);
 });
 
 var auth = new FirebaseSimpleLogin(fireBaseRef, function(error, user) {
@@ -45,12 +46,12 @@ var auth = new FirebaseSimpleLogin(fireBaseRef, function(error, user) {
     console.log(error);
   } else if (user) {
     console.log('Success!')
-    console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
+    username = user.username;
   } else {
     login();
   }
 });
 
 var login = function() {
-  console.log("Hello!")
+  auth.login('twitter');
 }
