@@ -38,14 +38,12 @@ $('#clear-btn').bind("click", function() {
 
 $("#login-btn").on("click", function() {
   login();
-  console.log(username);
 });
 
 var auth = new FirebaseSimpleLogin(fireBaseRef, function(error, user) {
   if (error) {
     console.log(error);
   } else if (user) {
-    console.log('Success!')
     username = user.username;
   } else {
     login();
@@ -53,5 +51,7 @@ var auth = new FirebaseSimpleLogin(fireBaseRef, function(error, user) {
 });
 
 var login = function() {
-  auth.login('twitter');
+  auth.login('twitter', {
+    rememberMe: true
+  });
 }
