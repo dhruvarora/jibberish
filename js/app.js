@@ -8,7 +8,6 @@ var auth = FirebaseSimpleLogin(fireBaseRef, function(error, user) {
   }
 });
 
-
 $("#submit-btn").on("click", function() {
   var chat = $("#chats");
   var chatValue = $.trim(chat.val());
@@ -29,15 +28,6 @@ $("#submit-btn").on("click", function() {
   return false;
 });
 
-fireBaseRef.on('child_added', function(snapshot) {
-  var chat = snapshot.val().chat;
-  var user = snapshot.val().user;
-  var chatsContainer = $('#chats-container');
-  $('<div/>', {class: 'chat-container'})
-    .html('<span class="label label-default">' + user + '</span>' + chat).appendTo(chatsContainer);
-  chatsContainer.scrollTop(chatsContainer.prop('scrollHeight'));
-});
-
 $("#chats").keyup(function(event){
   if(event.keyCode == 13){
     $("#chats").click();
@@ -49,7 +39,7 @@ $('#clear-btn').on("click", function() {
 });
 
 $("#login-btn").on("click", function() {
-  console.log("calling twitter window");
+  console.log("Opening twitter login");
   auth.login('twitter');
 });
 
@@ -58,3 +48,5 @@ $("#logout-btn").on("click", function() {
   auth.logout();
   authUser = null;
 });
+
+// TRANSLATE CODE ////////////////////////

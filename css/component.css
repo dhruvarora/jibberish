@@ -19,7 +19,7 @@
 /* Button styling */
 .butn {
 	border: 1px solid #A5281B;
-	border-radius: 50px;
+	border-radius: 1px;
 	color: #A5281B;
 	font-size: inherit;
 	background: none;
@@ -47,7 +47,7 @@
 
 .butn:hover {
 	background: #c0392b;
-	border-radius: 50px;
+	border-radius: 1px;
 	border: 3px #c0392b;
 	color: #fff;
 }
