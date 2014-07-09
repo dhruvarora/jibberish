@@ -14,7 +14,7 @@ var translate = function(text) {
  $.get("https://www.googleapis.com/language/translate/v2", {
    key: apikey,
    source: "en",
-   target: "de",
+   target: "es",
    q: text
   },
   function(response) {
@@ -41,7 +41,7 @@ $("#submit-btn").on("click", function() {
 });
 
 var fireBasePush = function(text, response) {
-  fireBaseRef.push({chat_en: text, chat_de: response.data.translations[0].translatedText, user: authUser.username}, function(error) {
+  fireBaseRef.push({chat_en: text, chat_es: response.data.translations[0].translatedText, user: authUser.username}, function(error) {
     if (error !== null) {
       console.log('Could not push chat to FireBase!');
     }
@@ -78,9 +78,6 @@ $("#language-selected").change(function() {
     };
   });
 });
-
-
-
 
 $('#clear-btn').on("click", function() {
   $('#chats-container').empty();
